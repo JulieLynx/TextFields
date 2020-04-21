@@ -4,8 +4,9 @@
 HWND hEdit1;
 HWND hEdit2;
 
-CHAR str1[] = "Hello,guys";
-CHAR str2[] = { 0 };
+//CHAR str1[] = "Hello,guys";
+//CHAR str2[] = { 0 };
+CHAR name[] = {};
 
 BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam,
 	LPARAM lParam);
