@@ -4,9 +4,9 @@
 HWND hEdit1;
 HWND hEdit2;
 
-//CHAR str1[] = "Hello,guys";
-//CHAR str2[] = { 0 };
-CHAR name[] = {};
+CHAR str1[] = "Hello,guys";
+CHAR str2[] = { 0 };
+//CHAR name[] = {};
 
 BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam,
 	LPARAM lParam);
@@ -41,9 +41,18 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam,
 		case IDC_COPY:
 			SendMessage(hEdit1, WM_GETTEXT, 255, (LPARAM)str2);
 			SendMessage(hEdit2, WM_SETTEXT, 0, (LPARAM)str2);
-		break;
+			break;
 		case IDOK:
-			MessageBox(hwnd, "Hello", "Hi", MB_OK);
+		{
+			const int SIZE = 255;
+			CHAR msg[SIZE] = "Hello ";
+			CHAR name[SIZE]{};
+			GetDlgItemText(hwnd, IDC_EDIT1, name, SIZE);
+			strcat_s(msg, SIZE, name);
+			strcat_s(msg, SIZE, "!");
+			MessageBox(hwnd, msg, "Hi", MB_OK|MB_ICONINFORMATION);
+		}
+				
 		break;
 		case IDCANCEL:
 			EndDialog(hwnd,0);
